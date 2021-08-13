@@ -6,18 +6,22 @@
     <title>Unity WebGL Player | DVM Unity Challenge</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
   <body>
     <div class="container">
-      <div id="info-container">
-        <div id="interactable"></div>
-        <div id="instruction"></div>
+      <dl>
+        <dt>Interactable Object</dt>
+        <dd id="interactable"></dd>
+        <dt>Instruction</dt>
+        <dd id="instruction"></dd>
         <div id="character-animation"></div>
         <div id="light-status"></div>
         <div id="cabinet-status"></div>
         <div id="item-amount"></div>
         <div id="game-time"></div>
         <div id="game-score"></div>
+      </dl>
       </div>
       <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas"></canvas>
