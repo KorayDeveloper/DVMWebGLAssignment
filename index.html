@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
-    <p id="instruction"></p>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas"></canvas>
       <div id="unity-loading-bar">
@@ -25,11 +24,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/v1.loader.js";
+      var loaderUrl = buildUrl + "/v2.loader.js";
       var config = {
-        dataUrl: buildUrl + "/v1.data.unityweb",
-        frameworkUrl: buildUrl + "/v1.framework.js.unityweb",
-        codeUrl: buildUrl + "/v1.wasm.unityweb",
+        dataUrl: buildUrl + "/v2.data.unityweb",
+        frameworkUrl: buildUrl + "/v2.framework.js.unityweb",
+        codeUrl: buildUrl + "/v2.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "DVM Unity Challenge",
