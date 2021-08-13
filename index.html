@@ -11,7 +11,7 @@
   <body>
       <dl id="game-info-container">
         <dt>Interactable Object</dt>
-        <dd id="Interactable"></dd>
+        <dd id="interactable"></dd>
         <dt>Instruction</dt>
         <dd id="instruction"></dd>
         <dt>Character Animation</dt>
@@ -41,6 +41,26 @@
           <div id="unity-build-title">DVM Unity Challenge</div>
         </div>
       </div>
+      <ul id="game-interactions-container">
+        <li>
+          <button type="button" onclick="toggleLight()" class="btn btn-primary">Toggle Light</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary">Toggle Cabinet</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary">Flip Board</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary">Switch Character Animation</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary">Start Mini Game</button>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary">Abort Mini Game</button>
+        </li>
+      </ul>
     </div>
     <script>
       var buildUrl = "Build";
@@ -85,6 +105,11 @@
         });
       };
       document.body.appendChild(script);
+    </script>
+    <script>
+      function toggleLight() {
+        unityInstance.SendMessage('DeskLight', 'ToggleLight');
+      }
     </script>
   </body>
 </html>
