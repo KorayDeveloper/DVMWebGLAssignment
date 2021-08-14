@@ -43,7 +43,7 @@
       </div>
       <ul id="game-interactions-container">
         <li>
-          <button type="button" onclick="toggleLight()" class="btn btn-primary">Toggle Light</button>
+          <button id="toggle-light-button" type="button" class="btn btn-primary">Toggle Light</button>
         </li>
         <li>
           <button type="button" class="btn btn-primary">Toggle Cabinet</button>
@@ -80,6 +80,7 @@
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var toggleLightButton = document.querySelector("#toggle-light-button");
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
@@ -97,6 +98,9 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          toggleLightButton.onclick = () => {
+            unityInstance.SendMessage('desk_lamp', 'ToggleLight');
+          }
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
@@ -105,11 +109,6 @@
         });
       };
       document.body.appendChild(script);
-    </script>
-    <script>
-      function toggleLight() {
-        unityInstance.SendMessage('desk_lamp', 'ToggleLight');
-      }
     </script>
   </body>
 </html>
