@@ -6,29 +6,115 @@
     <title>Unity WebGL Player | DVM Unity Challenge</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   </head>
   <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
+      <dl id="game-info-container">
+        <dt>Interactable Object</dt>
+        <dd id="interactable"></dd>
+        <dt>Instruction</dt>
+        <dd id="instruction"></dd>
+        <dt>Character Animation</dt>
+        <dd id="character-animation"></dd>
+        <dt>Light Status</dt>
+        <dd id="light-status"></dd>
+        <dt>Cabinet Status</dt>
+        <dd id="cabinet-status"></dd>
+        <dt>Mini Game Collected Items</dt>
+        <dd id="item-amount"></dd>
+        <dt>Mini Game Time</dt>
+        <dd id="game-time"></dd>
+        <dt>Mini Game Score</dt>
+        <dd id="game-score"></dd>
+      </dl>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-0"></th>
+          <th id="leaderboard-score-0"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-1"></th>
+          <th id="leaderboard-score-1"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-2"></th>
+          <th id="leaderboard-score-2"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-3"></th>
+          <th id="leaderboard-score-3"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-4"></th>
+          <th id="leaderboard-score-4"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-5"></th>
+          <th id="leaderboard-score-5"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-6"></th>
+          <th id="leaderboard-score-6"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-7"></th>
+          <th id="leaderboard-score-7"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-8"></th>
+          <th id="leaderboard-score-8"></th>
+        </tr>
+        <tr>
+          <th id="leaderboard-name-9"></th>
+          <th id="leaderboard-score-9"></th>
+        </tr>
+      </table>
+      <div id="unity-container" class="unity-desktop">
+        <canvas id="unity-canvas"></canvas>
+        <div id="unity-loading-bar">
+          <div id="unity-logo"></div>
+          <div id="unity-progress-bar-empty">
+            <div id="unity-progress-bar-full"></div>
+          </div>
+        </div>
+        <div id="unity-footer">
+          <div id="unity-webgl-logo"></div>
+          <div id="unity-fullscreen-button"></div>
+          <div id="unity-build-title">DVM Unity Challenge</div>
         </div>
       </div>
-      <div id="unity-footer">
-        <div id="unity-webgl-logo"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">DVM Unity Challenge</div>
-      </div>
+      <ul id="game-interactions-container">
+        <li>
+          <button id="toggle-light-button" type="button" class="btn btn-primary">Toggle Light</button>
+        </li>
+        <li>
+          <button id="toggle-cabinet-button" type="button" class="btn btn-primary">Toggle Cabinet</button>
+        </li>
+        <li>
+          <button id="flip-board-button" type="button" class="btn btn-primary">Flip Board</button>
+        </li>
+        <li>
+          <button id="switch-animation-button" type="button" class="btn btn-primary">Switch Character Animation</button>
+        </li>
+        <li>
+          <button id="start-minigame-button" type="button" class="btn btn-primary">Start Mini Game</button>
+        </li>
+        <li>
+          <button id="abort-minigame-button" type="button" class="btn btn-primary">Abort Mini Game</button>
+        </li>
+      </ul>
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/v5.loader.js";
+      var loaderUrl = buildUrl + "/v4.loader.js";
       var config = {
-        dataUrl: buildUrl + "/v5.data.unityweb",
-        frameworkUrl: buildUrl + "/v5.framework.js.unityweb",
-        codeUrl: buildUrl + "/v5.wasm.unityweb",
+        dataUrl: buildUrl + "/v4.data.unityweb",
+        frameworkUrl: buildUrl + "/v4.framework.js.unityweb",
+        codeUrl: buildUrl + "/v4.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "DVM Unity Challenge",
@@ -40,6 +126,12 @@
       var loadingBar = document.querySelector("#unity-loading-bar");
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+      var toggleLightButton = document.querySelector("#toggle-light-button");
+      var toggleCabinetButton = document.querySelector("#toggle-cabinet-button");
+      var flipBoardButton = document.querySelector("#flip-board-button");
+      var switchAnimationButton = document.querySelector("#switch-animation-button");
+      var startMinigameButton = document.querySelector("#start-minigame-button");
+      var abortMinigameButton = document.querySelector("#abort-minigame-button");
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
@@ -57,6 +149,24 @@
           progressBarFull.style.width = 100 * progress + "%";
         }).then((unityInstance) => {
           loadingBar.style.display = "none";
+          toggleLightButton.onclick = () => {
+            unityInstance.SendMessage('desk_lamp', 'ToggleLight');
+          };
+          toggleCabinetButton.onclick = () => {
+            unityInstance.SendMessage('cabinet', 'ToggleRightDoor');
+          };
+          flipBoardButton.onclick = () => {
+            unityInstance.SendMessage('writing_board', 'Flip');
+          };
+          switchAnimationButton.onclick = () => {
+            unityInstance.SendMessage('AnimatedCharacter', 'SwitchAnimation');
+          };
+          startMinigameButton.onclick = () => {
+            unityInstance.SendMessage('MiniGameController', 'StartMiniGame');
+          };
+          abortMinigameButton.onclick = () => {
+            unityInstance.SendMessage('MiniGameController', 'AbortMiniGame');
+          };
           fullscreenButton.onclick = () => {
             unityInstance.SetFullscreen(1);
           };
