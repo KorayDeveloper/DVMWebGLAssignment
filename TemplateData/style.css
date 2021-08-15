@@ -17,5 +17,6 @@ body { padding: 0; margin: 0 }
 #game-info-container { float: left; top: 40%; position: absolute; margin-left: 5%; }
 #game-interactions-container { float: right; right:0; top: 40%; position: absolute; margin-right: 5%; }
 .game-interaction { margin-bottom: 2em; }
-#leaderboard-container { display: flex; flex-direction: row; list-style-type: none; }
+#leaderboard-container { float:left; margin-left: 5%; }
+#leaderboard-table { display: flex; flex-direction: row; justify-content: space-between; }
 ul { list-style-type: none; padding-left: 0; }
