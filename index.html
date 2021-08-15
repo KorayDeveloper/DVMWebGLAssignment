@@ -5,8 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | DVM Unity Challenge</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
       <dl id="game-info-container">
@@ -28,8 +28,11 @@
         <dd id="game-score"></dd>
       </dl>
       <div id="leaderboard-container">
-        <div id="leaderboard-names"></div>
-        <div id="leaderboard-scores"></div>
+        <h2>Leaderboard</h2>
+        <div id="leaderboard-table">
+          <div id="leaderboard-names"></div>
+          <div id="leaderboard-scores"></div>
+        </div>
       </div>
       <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas"></canvas>
