@@ -66,11 +66,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/v7.loader.js";
+      var loaderUrl = buildUrl + "/v8.loader.js";
       var config = {
-        dataUrl: buildUrl + "/v7.data.unityweb",
-        frameworkUrl: buildUrl + "/v7.framework.js.unityweb",
-        codeUrl: buildUrl + "/v7.wasm.unityweb",
+        dataUrl: buildUrl + "/v8.data.unityweb",
+        frameworkUrl: buildUrl + "/v8.framework.js.unityweb",
+        codeUrl: buildUrl + "/v8.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "DVM Unity Challenge",
@@ -130,6 +130,31 @@
           alert(message);
         });
       };
+      
+      function SetLBNames(namesString)
+      {
+        const namesArray = namesString.split("|");
+        const arrayLength = namesArray.length;
+        let content = "<ul>";
+        for(let i = 0; i < arrayLength; i++) {
+          content += "<li>" + namesArray[i] + "</li>";
+        }
+        const leaderboardNames = document.getElementById("leaderboard-names");
+        leaderboardNames.innerHTML = content;
+      }
+
+      function SetLBScores(scoresString)
+      {
+        const scoresArray = scoresString.split("|");
+        const arrayLength = scoresArray.length;
+        let content = "<ul>";
+        for(let i = 0; i < arrayLength; i++) {
+          content += "<li>" + scoresArray[i] + "</li>";
+        }
+        const leaderboardScores = document.getElementById("leaderboard-scores");
+        leaderboardScores.innerHTML = content;
+      }
+
       document.body.appendChild(script);
     </script>
   </body>
