@@ -27,8 +27,10 @@
         <dt>Mini Game Score</dt>
         <dd id="game-score"></dd>
       </dl>
-      <div id="leaderboard-names"></div>
-      <div id="leaderboard-scores"></div>
+      <div id="leaderboard-container">
+        <div id="leaderboard-names"></div>
+        <div id="leaderboard-scores"></div>
+      </div>
       <div id="unity-container" class="unity-desktop">
         <canvas id="unity-canvas"></canvas>
         <div id="unity-loading-bar">
@@ -44,22 +46,22 @@
         </div>
       </div>
       <ul id="game-interactions-container">
-        <li>
+        <li class="game-interaction">
           <button id="toggle-light-button" type="button" class="btn btn-primary">Toggle Light</button>
         </li>
-        <li>
+        <li class="game-interaction">
           <button id="toggle-cabinet-button" type="button" class="btn btn-primary">Toggle Cabinet</button>
         </li>
-        <li>
+        <li class="game-interaction">
           <button id="flip-board-button" type="button" class="btn btn-primary">Flip Board</button>
         </li>
-        <li>
+        <li class="game-interaction">
           <button id="switch-animation-button" type="button" class="btn btn-primary">Switch Character Animation</button>
         </li>
-        <li>
+        <li class="game-interaction">
           <button id="start-minigame-button" type="button" class="btn btn-primary">Start Mini Game</button>
         </li>
-        <li>
+        <li class="game-interaction">
           <button id="abort-minigame-button" type="button" class="btn btn-primary">Abort Mini Game</button>
         </li>
       </ul>
